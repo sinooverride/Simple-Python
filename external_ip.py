@@ -9,8 +9,8 @@ def ip_v4():
 	output = request.decode('utf-8')
 
 	IPv4 = re.findall("\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}", output)
-
-	print ("IP V4: ", IPv4)
+	value = IPv4[0]
+	print ("IP V4: ", value)
 	print ("")
 
 def ip_v6():
@@ -18,8 +18,15 @@ def ip_v6():
 	output = request.decode('utf-8')
 	
 	IPv6 = re.findall("IP is (.+?)</title>", output)
-	print("IP V6: ", IPv6)
-	print("")
+	value = IPv6[0]
+	x = (":")
+	if x in value:
+		print("IP V6:", value)
+		print("")
+	else:
+		print("IPv6:   (only IPv4)")
+		print("")
+
 
 if __name__ == "__main__":
 	print ("Getting externel IP")
