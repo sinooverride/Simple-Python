@@ -3,22 +3,29 @@ import subprocess
 import sys
 
 def scan_host():
-    i = 1
-    while i < 2:
+    i = 0
+    while True:
         try:
-            server = input("Enter Host:")
+            server = input("Enter host:")
             serverIP = socket.gethostbyname(server)
-            print("scanning for {0} with IP: {1} on Port 1-1024".format(server,serverIP))
+            print("Define portrange")
+            startport = int(input("From:"))
+            endport = int(input("To:"))
+            print("\n")
+            print("scanning for {0} with IP: {1} on Port {2}-{3}".format(server,serverIP,startport,endport))
             print("...")
 
-            for port in range(1,1024):  
+            for port in range(startport,endport):
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 output = s.connect_ex((serverIP, port))
                 if output == 0:
                     print ("Port {}:  Open".format(port))
+                    i = +1
                 s.close()
             print("\n")
-            i = 2
+            if i == 0:
+                print("No open Ports!")
+            return False
 
         except socket.gaierror:
             print("no servername...")
