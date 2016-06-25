@@ -6,11 +6,11 @@ def scan_host():
     i = 0
     while True:
         try:
-            server = input("Enter host:")
+            server = input("Enter host: ")
             serverIP = socket.gethostbyname(server)
             print("Define portrange")
-            startport = int(input("From:"))
-            endport = int(input("To:"))
+            startport = int(input("From: "))
+            endport = int(input("To: "))
             print("\n")
             print("scanning for {0} with IP: {1} on Port {2}-{3}".format(server,serverIP,startport,endport))
             print("...")
@@ -24,7 +24,7 @@ def scan_host():
                 s.close()
             print("\n")
             if i == 0:
-                print("No open Ports!")
+                print("Open Ports:  0!")
             return False
 
         except socket.gaierror:
